@@ -8,7 +8,21 @@
     "build": "webpack --config=webpack.config.prod.js"
   },
   "devDependencies": {
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-config-standard-with-typescript": "^34.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-standard": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.8.4",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.5",
     "webpack": "^5.76.1",
@@ -16,9 +30,11 @@
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0"
   },
-  "author": "lucazweb",
-  "license": "ISC",
   "dependencies": {
-    "clean-webpack-plugin": "^4.0.0"
-  }
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "react-router-dom": "^6.9.0"
+  },
+  "author": "lucazweb",
+  "license": "ISC"
 }

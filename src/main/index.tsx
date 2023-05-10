@@ -1,3 +1,9 @@
-const helloCrawler = () => console.log("🙂 hello crawler");
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 
-helloCrawler();
+const App = () => <span>Hello crawler</span>;
+
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
+
+root.render(<App />);
