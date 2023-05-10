@@ -1,0 +1,24 @@
+{
+  "name": "web-crawling",
+  "version": "1.0.0",
+  "description": "a react typescript webcrawler project",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config=webpack.config.dev.js --open",
+    "build": "webpack --config=webpack.config.prod.js"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.5",
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "author": "lucazweb",
+  "license": "ISC",
+  "dependencies": {
+    "clean-webpack-plugin": "^4.0.0"
+  }
+}
