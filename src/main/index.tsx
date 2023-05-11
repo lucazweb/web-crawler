@@ -1,8 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
+import { App } from './App'
 import './global.scss'
-
-const App = () => <span>Hello crawler</span>
 
 const rootElement = document.getElementById('root')
 const root = createRoot(rootElement)
