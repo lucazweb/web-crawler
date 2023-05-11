@@ -1,7 +1,7 @@
 export type QueryDetail = {
   id: string
-  status: QueryStatus
+  status: Status
   urls: string[]
 }
 
-export type QueryStatus = 'active' | 'done'
+export type Status = 'active' | 'done'
