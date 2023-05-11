@@ -1,12 +1,10 @@
 import { type QueryDetail } from '@/domain/models'
 
-interface SaveKeywordSearch {
-  save: (
-    params: SaveKeywordSearch.Params
-  ) => Promise<SaveKeywordSearch.Response>
+export interface SaveKeywordSearch {
+  save: (params: SaveKeyword.Params) => Promise<SaveKeyword.Response>
 }
 
-export namespace SaveKeywordSearch {
+export namespace SaveKeyword {
   export type Params = {
     keyword: string
   }
