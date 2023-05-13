@@ -7,5 +7,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = (props: ButtonProps) => {
-  return <StyledButton {...props}> {props.label} </StyledButton>
+  return (
+    <StyledButton {...props}>
+      {!props.isLoading ? props.label : 'Carregando..'}
+    </StyledButton>
+  )
 }
