@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../assets/fonts/ubuntu/ubuntu-regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
