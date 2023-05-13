@@ -1,14 +1,24 @@
-import React from 'react'
-import {
-  Button,
-  Layout,
-  QueryList,
-  SearchInput,
-} from '@/presentation/components'
+import React, { useState } from 'react'
+import { Button, Layout, SearchInput } from '@/presentation/components'
 import { SearchBox, TopBar } from './styled'
-import { faker } from '@faker-js/faker'
+import { remoteKeyworkSearch } from '@/main/factories/usecases/remote-keywork-search'
 
 export const SearchPage = () => {
+  // should call search list request on button press
+  const [keyword, setKeyword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleKeywordSearch = async () => {
+    try {
+      setIsLoading(true)
+      await remoteKeyworkSearch.save({ keyword })
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <>
       <TopBar>
@@ -17,35 +27,20 @@ export const SearchPage = () => {
       <Layout>
         <h1 data-testid="page-title">Webcrawler</h1>
         <SearchBox>
-          <SearchInput placeholder="Digite a palavra-chave" />
-          <Button data-testid="search-button" label="Buscar" />
-        </SearchBox>
-        <div style={{ width: '600px', marginTop: '32px' }}>
-          <QueryList
-            list={[
-              {
-                id: faker.database.mongodbObjectId(),
-                status: 'active',
-                urls: [faker.internet.url(), faker.internet.url()],
-              },
-              {
-                id: faker.database.mongodbObjectId(),
-                status: 'active',
-                urls: [],
-              },
-              {
-                id: faker.database.mongodbObjectId(),
-                status: 'done',
-                urls: [faker.internet.url(), faker.internet.url()],
-              },
-              {
-                id: faker.database.mongodbObjectId(),
-                status: 'done',
-                urls: [],
-              },
-            ]}
+          <SearchInput
+            onChange={(e) => {
+              setKeyword(e.target.value)
+            }}
+            value={keyword}
+            placeholder="Digite a palavra-chave"
           />
-        </div>
+          <Button
+            onClick={handleKeywordSearch}
+            data-testid="search-button"
+            label="Buscar"
+            isLoading={isLoading}
+          />
+        </SearchBox>
       </Layout>
     </>
   )
