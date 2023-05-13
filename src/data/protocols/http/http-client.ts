@@ -1,4 +1,14 @@
-export type HttpMethod = 'post' | 'get' | 'put' | 'delete'
+export type HttpMethod =
+  | 'POST'
+  | 'post'
+  | 'GET'
+  | 'get'
+  | 'PUT'
+  | 'put'
+  | 'DELETE'
+  | 'delete'
+  | 'PATCH'
+  | 'patch'
 
 export enum HttpStatusCode {
   ok = 200,
