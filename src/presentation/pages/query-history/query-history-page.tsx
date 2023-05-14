@@ -44,15 +44,8 @@ export const QueryHistory = () => {
 
   useEffect(() => {
     const localList = getLocalQueryList().get<QueryDetail>('query-list')
-    // should update all data assyncronaly using query info service
     void getAllData(localList)
-    // setList(localList)
   }, [])
-
-  // useEffect(() => {
-
-  //   void getAllData()
-  // }, [list])
 
   return (
     <>
