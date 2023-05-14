@@ -42,6 +42,11 @@ export const QueryHistory = () => {
     }
   }
 
+  const handleRefreshData = () => {
+    setCount(0)
+    void getAllData(list)
+  }
+
   useEffect(() => {
     const localList = getLocalQueryList().get<QueryDetail>('query-list')
     void getAllData(localList)
@@ -60,7 +65,7 @@ export const QueryHistory = () => {
           <h1 data-testid="page-title">
             Webcrawler <small>Histórico de buscas</small>
           </h1>
-          <button>Atualizar</button>
+          <button onClick={handleRefreshData}>Atualizar</button>
         </ListHeader>
 
         <div style={{ width: '50%', display: 'flex' }}>
