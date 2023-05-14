@@ -31,7 +31,7 @@ export const QueryList = (props: QueryListProps) => {
     <StyledList data-testid="query-list-component">
       {props.list.map((query) => (
         <ListItem key={query.id} data-testid="list-item">
-          <h3 data-testid="list-item-keyword">keyword</h3>
+          <h3 data-testid="list-item-keyword">{query.keyword}</h3>
           <p data-testid="list-item-id">{query.id}</p>
           <p data-testid="list-item-status">
             <StatusIcon status={query.status} /> {QueryStatus[query.status]}
