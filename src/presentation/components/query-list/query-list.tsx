@@ -3,7 +3,7 @@ import React from 'react'
 import { ListItem, StatusIcon, StyledList } from './styled'
 
 export type QueryListProps = {
-  list: QueryDetail[]
+  list: Array<Partial<QueryDetail>>
 }
 
 enum QueryStatus {
@@ -16,20 +16,22 @@ export const QueryList = (props: QueryListProps) => {
     status: 'active' | 'done',
     urls: string[] | undefined
   ) => {
-    const results = `${urls.length} resultados encontrados`
-    const noResults = 'Sem resultados'
-    if (status === 'done' && !urls?.length) return noResults
-    if (status === 'done' && urls?.length > 0) return results
-    if (status === 'active') {
-      return <>{urls.length ? results : 'Ainda sem resultados'}</>
+    if (urls) {
+      const results = `${urls.length} resultados encontrados`
+      if (status === 'active') {
+        return <>{urls.length ? results : 'Ainda sem resultados'}</>
+      }
+      if (status === 'done' && urls?.length > 0) return results
     }
+
+    return 'Sem resultados'
   }
 
   return (
     <StyledList data-testid="query-list-component">
       {props.list.map((query) => (
         <ListItem key={query.id} data-testid="list-item">
-          <h3 data-testid="list-item-keyword">keyword</h3>
+          <h3 data-testid="list-item-keyword">{query.keyword}</h3>
           <p data-testid="list-item-id">{query.id}</p>
           <p data-testid="list-item-status">
             <StatusIcon status={query.status} /> {QueryStatus[query.status]}

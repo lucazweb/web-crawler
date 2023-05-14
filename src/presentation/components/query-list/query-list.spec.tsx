@@ -106,4 +106,17 @@ describe('QueryList component tests', () => {
       `${urls.length} resultados encontrados`
     )
   })
+  test('should display partial list item', () => {
+    const { getByTestId } = makeSut({
+      list: [
+        {
+          id: faker.database.mongodbObjectId(),
+          status: 'active',
+        },
+      ],
+    })
+    expect(getByTestId('list-item-result-counter')).toHaveTextContent(
+      'Sem resultados'
+    )
+  })
 })

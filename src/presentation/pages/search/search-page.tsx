@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Layout, SearchInput } from '@/presentation/components'
-import { SearchBox, TopBar } from './styled'
 import { remoteKeyworkSearch } from '@/main/factories/usecases/remote-keywork-search'
+import { localSaveQuery } from '@/main/factories'
+import { QueryDetail } from '@/domain'
+import { SearchBox, TopBar } from './styled'
+import { Link } from 'react-router-dom'
 
 export const SearchPage = () => {
   // should call search list request on button press
@@ -11,7 +14,10 @@ export const SearchPage = () => {
   const handleKeywordSearch = async () => {
     try {
       setIsLoading(true)
-      await remoteKeyworkSearch.save({ keyword })
+      const response: Partial<QueryDetail> = await remoteKeyworkSearch.save({
+        keyword,
+      })
+      localSaveQuery().set('query-list', { ...response, keyword })
     } catch (err) {
       console.log(err)
     } finally {
@@ -22,7 +28,9 @@ export const SearchPage = () => {
   return (
     <>
       <TopBar>
-        <span data-testid="history-link">Histórico de buscas</span>
+        <span data-testid="history-link">
+          <Link to="/historico">Histórico de buscas</Link>
+        </span>
       </TopBar>
       <Layout>
         <h1 data-testid="page-title">Webcrawler</h1>

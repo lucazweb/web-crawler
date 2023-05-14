@@ -1,5 +1,6 @@
 export type QueryDetail = {
   id: string
+  keyword?: string
   status: Status
   urls: string[]
 }
