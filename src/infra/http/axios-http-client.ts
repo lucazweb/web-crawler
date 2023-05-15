@@ -1,5 +1,10 @@
 import axios, { AxiosResponse } from 'axios'
-import { HttpClient, HttpRequest, HttpResponse } from '@/data/protocols/http'
+import {
+  HttpClient,
+  HttpRequest,
+  HttpResponse,
+  HttpClientArrayResolver,
+} from '@/data/protocols/http'
 
 export class AxiosHttpClient implements HttpClient {
   async request(data: HttpRequest): Promise<HttpResponse> {
@@ -18,5 +23,11 @@ export class AxiosHttpClient implements HttpClient {
       statusCode: axiosResponse.status,
       body: axiosResponse.data,
     }
+  }
+}
+
+export class AxiosHttpClientAdapter implements HttpClientArrayResolver {
+  async all<T>(data: Array<T | Promise<T>>): Promise<T[]> {
+    return await axios.all(data)
   }
 }
