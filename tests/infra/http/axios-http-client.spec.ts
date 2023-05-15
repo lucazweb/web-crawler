@@ -76,4 +76,22 @@ describe('AxiosHttpClient tests', () => {
       statusCode: response.status,
     })
   })
+
+  // test('should return expected response of all method', async () => {
+  //   const { sut, mockedAxios } = makeSut()
+  //   const arr = [
+  //     { id: faker.database.mongodbObjectId(), status: 'active' },
+  //     { id: faker.database.mongodbObjectId(), status: 'active' },
+  //   ]
+
+  //   const result = arr.map((a) => ({
+  //     ...a,
+  //     urls: [faker.internet.url()],
+  //   }))
+
+  //   mockedAxios.all.mockResolvedValue(result)
+
+  //   const promise = sut.all(arr)
+  //   await expect(promise).resolves.toEqual(result)
+  // })
 })

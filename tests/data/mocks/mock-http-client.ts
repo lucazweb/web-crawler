@@ -1,4 +1,10 @@
-import { HttpClient, HttpRequest, HttpResponse, HttpStatusCode } from '@/data'
+import {
+  HttpClient,
+  HttpClientArrayResolver,
+  HttpRequest,
+  HttpResponse,
+  HttpStatusCode,
+} from '@/data'
 
 export class HttpClientSpy<R = any> implements HttpClient<R> {
   url?: string
@@ -14,6 +20,16 @@ export class HttpClientSpy<R = any> implements HttpClient<R> {
     this.method = data.method
     this.body = data.body
     this.headers = data.headers
+    return this.response
+  }
+}
+
+export class HttpClientArrayResolverSpy<T = any>
+  implements HttpClientArrayResolver
+{
+  response: T[]
+
+  all = async (data: T[]): Promise<T[]> => {
     return this.response
   }
 }

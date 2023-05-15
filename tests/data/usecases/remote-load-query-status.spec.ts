@@ -3,7 +3,7 @@ import { HttpClientSpy } from '@/tests/data/mocks'
 import { HttpStatusCode } from '@/data/protocols'
 import { NotFoundError } from '@/domain/errors'
 import { faker } from '@faker-js/faker'
-import { LoadQuery } from '@/domain'
+import { LoadQuery, QueryDetail } from '@/domain'
 
 type SutTypes = {
   sut: RemoteLoadQueryStatus
@@ -11,7 +11,7 @@ type SutTypes = {
 }
 
 const makeSut = (url: string = faker.internet.url()): SutTypes => {
-  const httpClientSpy = new HttpClientSpy()
+  const httpClientSpy = new HttpClientSpy<QueryDetail>()
   const sut = new RemoteLoadQueryStatus(url, httpClientSpy)
   return {
     httpClientSpy,
