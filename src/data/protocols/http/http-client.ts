@@ -35,3 +35,7 @@ export type HttpResponse<T = any> = {
 export interface HttpClient<R = any> {
   request: (data: HttpRequest) => Promise<HttpResponse<R>>
 }
+
+export interface HttpClientArrayResolver<T = any, R = any> {
+  all: (data: T[]) => Promise<R[]>
+}

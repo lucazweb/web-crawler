@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Layout, QueryList } from '@/presentation/components'
 import { QueryDetail } from '@/domain'
-import { getLocalQueryList, remoteQueryStatus } from '@/main/factories'
+import { getLocalQueryList, remoteUpdateQueryList } from '@/main/factories'
 import { TopBar } from '../search/styled'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
 import { ListHeader } from './styled'
 
 export const QueryHistory = () => {
@@ -28,15 +27,10 @@ export const QueryHistory = () => {
 
   const getAllData = async (list: Array<Partial<QueryDetail>>) => {
     if (!count) {
-      const data: Array<Partial<QueryDetail>> = await axios.all(
+      const data: Array<Partial<QueryDetail>> = await remoteUpdateQueryList(
         list
-          .filter((q) => q.status !== 'done')
-          .map(async (q) => {
-            return remoteQueryStatus(q.id).load()
-          })
       )
       const updated = handleListUpdate(list, data)
-      console.log(updated, data)
       setList(updated)
       setCount((c) => c + 1)
     }
@@ -55,7 +49,7 @@ export const QueryHistory = () => {
   return (
     <>
       <TopBar>
-        <span data-testid="history-link">
+        <span data-testid="search-page-link">
           <Link to="/">Nova busca</Link>
         </span>
       </TopBar>
@@ -65,7 +59,9 @@ export const QueryHistory = () => {
           <h1 data-testid="page-title">
             Webcrawler <small>Histórico de buscas</small>
           </h1>
-          <button onClick={handleRefreshData}>Atualizar</button>
+          <button data-testid="refresh-button" onClick={handleRefreshData}>
+            Atualizar
+          </button>
         </ListHeader>
 
         <div style={{ width: '50%', display: 'flex' }}>
