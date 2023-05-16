@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Layout, QueryList } from '@/presentation/components'
 import { QueryDetail } from '@/domain'
 import { getLocalQueryList, remoteUpdateQueryList } from '@/main/factories'
 import { TopBar } from '../search/styled'
-import { Link } from 'react-router-dom'
 import { ListHeader } from './styled'
 
 export const QueryHistory = () => {
