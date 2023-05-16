@@ -26,8 +26,8 @@ export class AxiosHttpClient implements HttpClient {
   }
 }
 
-export class AxiosHttpClientAdapter implements HttpClientArrayResolver {
-  async all<T>(data: Array<T | Promise<T>>): Promise<T[]> {
+export class AxiosHttpAllClientAdapter implements HttpClientArrayResolver {
+  async all<T>(data: Array<T | Promise<T>>): Promise<any[]> {
     return await axios.all(data)
   }
 }
