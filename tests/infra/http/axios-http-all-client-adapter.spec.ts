@@ -1,19 +1,19 @@
 import axios from 'axios'
 import { faker } from '@faker-js/faker'
-import { AxiosHttpClientAdapter } from '@/infra/http/axios-http-client'
+import { AxiosHttpAllClientAdapter } from '@/infra/http/axios-http-client'
 import { mockAxios } from '@/tests/infra/mocks'
 
 jest.mock('axios')
 
 type SutTypes = {
-  sut: AxiosHttpClientAdapter
+  sut: AxiosHttpAllClientAdapter
   mockedAxios: jest.Mocked<typeof axios>
 }
 
 const makeSut = (): SutTypes => {
   const mockedAxios = mockAxios()
   return {
-    sut: new AxiosHttpClientAdapter(),
+    sut: new AxiosHttpAllClientAdapter(),
     mockedAxios,
   }
 }

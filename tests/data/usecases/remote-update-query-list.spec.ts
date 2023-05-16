@@ -9,7 +9,10 @@ type SutTypes = {
 }
 
 const makeSut = (): SutTypes => {
-  const httpClient = new HttpClientArrayResolverSpy<QueryDetail>()
+  const httpClient = new HttpClientArrayResolverSpy<
+    Promise<QueryDetail>,
+    Partial<QueryDetail>
+  >()
   const sut = new RemoteUpdateQueryList(httpClient)
   return {
     httpClientSpy: httpClient,
