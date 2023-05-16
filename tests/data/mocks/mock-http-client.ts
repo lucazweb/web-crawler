@@ -24,12 +24,12 @@ export class HttpClientSpy<R = any> implements HttpClient<R> {
   }
 }
 
-export class HttpClientArrayResolverSpy<T = any>
+export class HttpClientArrayResolverSpy<T = any, R = any>
   implements HttpClientArrayResolver
 {
-  response: T[]
+  response: R[]
 
-  all = async (data: T[]): Promise<T[]> => {
+  all = async (data: T[]): Promise<R[]> => {
     return this.response
   }
 }
