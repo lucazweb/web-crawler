@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Layout, QueryList } from '@/presentation/components'
 import { QueryDetail } from '@/domain'
-import { getLocalQueryList, remoteQueryStatus } from '@/main/factories'
+import { getLocalQueryList, remoteUpdateQueryList } from '@/main/factories'
 import { TopBar } from '../search/styled'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 import { ListHeader } from './styled'
 
 export const QueryHistory = () => {
@@ -28,12 +27,8 @@ export const QueryHistory = () => {
 
   const getAllData = async (list: Array<Partial<QueryDetail>>) => {
     if (!count) {
-      const data: Array<Partial<QueryDetail>> = await axios.all(
+      const data: Array<Partial<QueryDetail>> = await remoteUpdateQueryList(
         list
-          .filter((q) => q.status !== 'done')
-          .map(async (q) => {
-            return remoteQueryStatus(q.id).load()
-          })
       )
       const updated = handleListUpdate(list, data)
       console.log(updated, data)
