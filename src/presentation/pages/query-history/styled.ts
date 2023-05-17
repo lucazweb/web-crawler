@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const ListHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 100%;
   border-bottom: 1px solid #ccc;
   padding-bottom: 12px;
   margin-bottom: 32px;
