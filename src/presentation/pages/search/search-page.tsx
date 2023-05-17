@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Button, Layout, SearchInput } from '@/presentation/components'
+import { Link } from 'react-router-dom'
+import { Button, Layout, TopBar, SearchInput } from '@/presentation/components'
 import { remoteKeyworkSearch } from '@/main/factories/usecases/remote-keywork-search'
 import { localSaveQuery } from '@/main/factories'
 import { QueryDetail } from '@/domain'
-import { SearchBox, TopBar } from './styled'
-import { Link } from 'react-router-dom'
+import { SearchBox } from './styled'
 
 export const SearchPage = () => {
   // should call search list request on button press
@@ -28,9 +28,11 @@ export const SearchPage = () => {
   return (
     <>
       <TopBar>
-        <span data-testid="history-link">
-          <Link to="/historico">Histórico de buscas</Link>
-        </span>
+        <div>
+          <span data-testid="history-link">
+            <Link to="/historico">Histórico de buscas</Link>
+          </span>
+        </div>
       </TopBar>
       <Layout>
         <h1 data-testid="page-title">Webcrawler</h1>

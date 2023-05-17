@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Layout, QueryList } from '@/presentation/components'
+import { Link, useNavigate } from 'react-router-dom'
+import {
+  Button,
+  ButtonWrapper,
+  Layout,
+  TopBar,
+  QueryList,
+} from '@/presentation/components'
 import { QueryDetail } from '@/domain'
+import { TbRefresh, TbArrowBack } from 'react-icons/tb'
 import { getLocalQueryList, remoteUpdateQueryList } from '@/main/factories'
-import { TopBar } from '../search/styled'
+
 import { ListHeader } from './styled'
 
 export const QueryHistory = () => {
   const [list, setList] = useState<Array<Partial<QueryDetail>>>([])
   const [count, setCount] = useState(0)
+
+  const navigate = useNavigate()
 
   const handleListUpdate = (
     list: Array<Partial<QueryDetail>>,
@@ -31,7 +40,7 @@ export const QueryHistory = () => {
         list
       )
       const updated = handleListUpdate(list, data)
-      setList(updated)
+      setList(updated.reverse())
       setCount((c) => c + 1)
     }
   }
@@ -49,22 +58,35 @@ export const QueryHistory = () => {
   return (
     <>
       <TopBar>
-        <span data-testid="search-page-link">
-          <Link to="/">Nova busca</Link>
-        </span>
+        <div>
+          <span data-testid="search-page-link">
+            <Link to="/"> Nova busca</Link>
+          </span>
+        </div>
       </TopBar>
 
       <Layout>
+        <ButtonWrapper>
+          <Button
+            label="Voltar"
+            onClick={() => {
+              navigate('/')
+            }}
+            icon={<TbArrowBack />}
+          />
+        </ButtonWrapper>
         <ListHeader>
           <h1 data-testid="page-title">
             Webcrawler <small>Histórico de buscas</small>
           </h1>
-          <button data-testid="refresh-button" onClick={handleRefreshData}>
-            Atualizar
-          </button>
+          <Button
+            label="Atualizar"
+            icon={<TbRefresh />}
+            data-testid="refresh-button"
+            onClick={handleRefreshData}
+          />
         </ListHeader>
-
-        <div style={{ width: '50%', display: 'flex' }}>
+        <div style={{ width: '100%', display: 'flex' }}>
           <QueryList list={list} />
         </div>
       </Layout>
