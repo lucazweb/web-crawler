@@ -62,14 +62,16 @@ export const QuerySearchDetail = () => {
         <DetailCard>
           <DetailBox>
             <DetailHeader>
-              <h1>{query?.keyword}</h1>
+              <h1 data-testid="keyword">{query?.keyword}</h1>
               <QueryStatusDot status={query?.status} />
             </DetailHeader>
 
             <DetailBody>
               <span data-testid="list-item-id">
-                <p> ID: {query?.id} </p>
-                <p>{handleResultCounter(query?.status, query?.urls)}</p>
+                <p data-testid="query-id"> ID: {query?.id} </p>
+                <p data-testid="results-count">
+                  {handleResultCounter(query?.status, query?.urls)}
+                </p>
               </span>
 
               <ul style={{ marginTop: '24px' }}>
