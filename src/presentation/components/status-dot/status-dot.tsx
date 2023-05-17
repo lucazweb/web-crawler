@@ -8,7 +8,7 @@ export type StatusDot = {
 
 export const QueryStatusDot = (props: StatusDot) => {
   return (
-    <DotLabel status={props.status} data-testid="list-item-status">
+    <DotLabel data-testid="query-status-dot" status={props.status}>
       <Dot status={props.status} />
       {props.status !== 'done' ? 'Em andamento' : 'Concluída'}
     </DotLabel>
