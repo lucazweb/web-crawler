@@ -1,28 +1,23 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/infra/redux'
+import { keyworkSearchRequest } from '@/infra/redux/features/query/thunks'
 import { Button, Layout, TopBar, SearchInput } from '@/presentation/components'
-import { remoteKeyworkSearch } from '@/main/factories/usecases/remote-keywork-search'
-import { localSaveQuery } from '@/main/factories'
-import { QueryDetail } from '@/domain'
+import { useAppDispatch } from '@/presentation/hooks'
 import { SearchBox } from './styled'
 
 export const SearchPage = () => {
-  // should call search list request on button press
   const [keyword, setKeyword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  const { isLoading } = useSelector(({ querySlice }: RootState) => querySlice)
 
   const handleKeywordSearch = async () => {
-    try {
-      setIsLoading(true)
-      const response: Partial<QueryDetail> = await remoteKeyworkSearch.save({
-        keyword,
-      })
-      localSaveQuery().set('query-list', { ...response, keyword })
-    } catch (err) {
-      console.log(err)
-    } finally {
-      setIsLoading(false)
-    }
+    await dispatch(keyworkSearchRequest(keyword)).then(() => {
+      navigate('/historico')
+    })
   }
 
   return (
@@ -45,6 +40,7 @@ export const SearchPage = () => {
             placeholder="Digite a palavra-chave"
           />
           <Button
+            disabled={!keyword}
             onClick={handleKeywordSearch}
             data-testid="search-button"
             label="Buscar"

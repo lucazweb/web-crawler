@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Link, useParams, useNavigate } from 'react-router-dom'
+import { TbArrowBack } from 'react-icons/tb'
 import {
   Button,
   ButtonWrapper,
@@ -8,35 +10,26 @@ import {
   QueryStatusDot,
   handleResultCounter,
 } from '@/presentation/components'
-
-import { QueryDetail } from '@/domain'
-import { getLocalQueryList, remoteQueryStatus } from '@/main/factories'
 import { DetailBody, DetailBox, DetailCard, DetailHeader } from './styled'
-import { TbArrowBack } from 'react-icons/tb'
+import { RootState } from '@/infra/redux'
+import { useAppDispatch } from '@/presentation/hooks'
+import { fetchQueryStatus } from '@/infra/redux/features/query/thunks'
 
 export const QuerySearchDetail = () => {
-  const [query, setQuery] = useState<QueryDetail>()
   const { id } = useParams<{ id: string }>()
 
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const { selected: query, isLoading } = useSelector(
+    ({ querySlice }: RootState) => querySlice
+  )
+
+  const handleQueryDetail = async () => {
+    await dispatch(fetchQueryStatus(id))
+  }
 
   useEffect(() => {
-    const getQueryDetail = async () => {
-      try {
-        const localList = getLocalQueryList().get<QueryDetail>('query-list')
-        const result = await remoteQueryStatus(id).load()
-        console.log(result)
-
-        if (result) {
-          const keyword = localList.find((q) => q.id === result.id)?.keyword
-          setQuery({ ...result, keyword })
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-    void getQueryDetail()
+    void handleQueryDetail()
   }, [])
 
   return (
@@ -61,6 +54,9 @@ export const QuerySearchDetail = () => {
         </ButtonWrapper>
         <DetailCard>
           <DetailBox>
+            <div style={{ display: isLoading ? 'block' : 'none' }}>
+              {isLoading ? 'Carregando..' : null}
+            </div>
             <DetailHeader>
               <h1 data-testid="keyword">{query?.keyword}</h1>
               <QueryStatusDot status={query?.status} />
