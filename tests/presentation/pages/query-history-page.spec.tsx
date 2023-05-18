@@ -1,8 +1,8 @@
 import React from 'react'
-import { render } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import { BrowserRouter } from 'react-router-dom'
-import { QuerySearchDetail } from './query-detail-page'
+import { render } from '@testing-library/react'
+import { QueryHistory } from '@/presentation/pages'
 import '@testing-library/jest-dom/extend-expect'
 import { ReduxProvider } from '@/infra/redux'
 
@@ -11,7 +11,7 @@ const makeSut = async () => {
     render(
       <ReduxProvider>
         <BrowserRouter>
-          <QuerySearchDetail />
+          <QueryHistory />
         </BrowserRouter>
       </ReduxProvider>
     )
@@ -21,9 +21,10 @@ const makeSut = async () => {
 describe('QueryHistory tests', () => {
   test('should render search page correctly', async () => {
     const { getByTestId } = await makeSut()
-    expect(getByTestId('keyword')).toBeTruthy()
-    expect(getByTestId('query-status-dot')).toBeTruthy()
-    expect(getByTestId('query-id')).toBeTruthy()
-    expect(getByTestId('results-count')).toBeTruthy()
+
+    expect(getByTestId('page-title')).toBeTruthy()
+    expect(getByTestId('refresh-button')).toBeTruthy()
+    expect(getByTestId('search-page-link')).toBeTruthy()
+    expect(getByTestId('search-page-link')).toHaveTextContent('Nova busca')
   })
 })

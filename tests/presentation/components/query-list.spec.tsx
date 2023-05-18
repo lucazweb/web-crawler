@@ -1,7 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
-import { QueryList, QueryListProps } from './query-list'
+import { QueryList, QueryListProps } from '@/presentation/components'
 import { faker } from '@faker-js/faker'
 import { QueryDetail } from '@/domain'
 

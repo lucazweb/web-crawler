@@ -1,7 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import { render, fireEvent } from '@testing-library/react'
-import { SearchInput, SearchInputProps } from './search-input'
+import { SearchInput, SearchInputProps } from '@/presentation/components'
 import { faker } from '@faker-js/faker'
 
 const makeSut = (props: SearchInputProps = {}) => {
