@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import { SearchPage } from './search-page'
+import { SearchPage } from '@/presentation/pages'
 import '@testing-library/jest-dom/extend-expect'
 import { ReduxProvider } from '@/infra/redux'
 
