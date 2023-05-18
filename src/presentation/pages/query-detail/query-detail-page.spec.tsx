@@ -1,16 +1,19 @@
 import React from 'react'
 import { render } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
 import { BrowserRouter } from 'react-router-dom'
 import { QuerySearchDetail } from './query-detail-page'
 import '@testing-library/jest-dom/extend-expect'
-import { act } from 'react-dom/test-utils'
+import { ReduxProvider } from '@/infra/redux'
 
 const makeSut = async () => {
   return await act(() =>
     render(
-      <BrowserRouter>
-        <QuerySearchDetail />
-      </BrowserRouter>
+      <ReduxProvider>
+        <BrowserRouter>
+          <QuerySearchDetail />
+        </BrowserRouter>
+      </ReduxProvider>
     )
   )
 }

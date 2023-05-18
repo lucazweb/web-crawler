@@ -3,12 +3,15 @@ import { render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { SearchPage } from './search-page'
 import '@testing-library/jest-dom/extend-expect'
+import { ReduxProvider } from '@/infra/redux'
 
 const makeSut = () => {
   return render(
-    <BrowserRouter>
-      <SearchPage />
-    </BrowserRouter>
+    <ReduxProvider>
+      <BrowserRouter>
+        <SearchPage />
+      </BrowserRouter>
+    </ReduxProvider>
   )
 }
 

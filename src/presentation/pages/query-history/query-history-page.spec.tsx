@@ -4,13 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 import { QueryHistory } from './query-history-page'
 import '@testing-library/jest-dom/extend-expect'
 import { act } from 'react-dom/test-utils'
+import { ReduxProvider } from '@/infra/redux'
 
 const makeSut = async () => {
   return await act(() =>
     render(
-      <BrowserRouter>
-        <QueryHistory />
-      </BrowserRouter>
+      <ReduxProvider>
+        <BrowserRouter>
+          <QueryHistory />
+        </BrowserRouter>
+      </ReduxProvider>
     )
   )
 }
