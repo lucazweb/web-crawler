@@ -1,6 +1,6 @@
 import { QueryDetail, UpdateQueryList } from '@/domain'
 import { HttpClientArrayResolver } from '@/data/protocols'
-import { remoteQueryStatus } from '@/main/factories'
+import { remoteLoadQueryStatus } from '@/main/factories'
 
 export class RemoteUpdateQueryList implements UpdateQueryList {
   constructor(
@@ -16,7 +16,7 @@ export class RemoteUpdateQueryList implements UpdateQueryList {
     try {
       const ids = list
         .filter((q) => q.status !== 'done')
-        .map(async (q) => remoteQueryStatus(q.id).load())
+        .map(async (q) => remoteLoadQueryStatus(q.id).load())
       return await this.httpClientArrayResolver.all(ids)
     } catch (err) {
       throw new Error(err.message)
