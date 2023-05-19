@@ -43,7 +43,7 @@ export const SearchPage = () => {
           />
           <Button
             disabled={!keyword}
-            isLargeButton
+            isLarge
             icon={<FaSearch />}
             onClick={handleKeywordSearch}
             data-testid="search-button"

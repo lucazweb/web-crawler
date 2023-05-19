@@ -1,12 +1,12 @@
 import React, { ButtonHTMLAttributes } from 'react'
+import { DotBlue } from '@/presentation/components'
 import { StyledButton } from './styled'
-import { DotBlue } from '../dot-loader/styled'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean
   label?: string
   icon?: JSX.Element
-  isLargeButton?: boolean
+  isLarge?: boolean
 }
 
 export const Button = ({ icon, ...props }: ButtonProps) => {
