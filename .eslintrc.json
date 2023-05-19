@@ -7,11 +7,15 @@
   "extends": [
     "standard-with-typescript",
     "plugin:react/recommended",
-    "prettier"
+    "prettier",
+    "plugin:cypress/recommended"
   ],
-  "plugins": ["react"],
+  "plugins": ["react", "cypress"],
+  "env": {
+    "cypress/globals": true
+  },
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig-eslint.json"
   },
   "rules": {
     "@typescript-eslint/camelcase": "off",
