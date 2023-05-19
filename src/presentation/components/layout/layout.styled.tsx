@@ -1,4 +1,14 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+export const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1
+  }
+`
 
 export const Layout = styled.div`
   display: flex;
@@ -8,6 +18,7 @@ export const Layout = styled.div`
   padding-top: 10vh;
   width: 80%;
   margin: auto;
+  animation: ${fadeIn} 0.3s ease-in forwards;
 `
 
 export const ButtonWrapper = styled.div`
