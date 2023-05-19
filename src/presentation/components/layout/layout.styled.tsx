@@ -1,4 +1,14 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+export const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1
+  }
+`
 
 export const Layout = styled.div`
   display: flex;
@@ -8,6 +18,7 @@ export const Layout = styled.div`
   padding-top: 10vh;
   width: 80%;
   margin: auto;
+  animation: ${fadeIn} 0.3s ease-in forwards;
 `
 
 export const ButtonWrapper = styled.div`
@@ -17,21 +28,27 @@ export const ButtonWrapper = styled.div`
   justify-content: flex-start;
 `
 
-export const TopBar = styled.div`
+export const StyledBar = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
   box-sizing: border-box;
   padding: 12px;
+  background: ${(props) => props.theme.colors.border};
   div {
     display: flex;
     justify-content: flex-end;
     width: 80%;
     margin: auto;
     span {
+      display: flex;
+      gap: 4px;
+      align-items: center;
       cursor: pointer;
-      &:hover {
-        text-decoration: underline;
+      a,
+      svg {
+        color: white;
+        text-decoration: none;
       }
     }
   }

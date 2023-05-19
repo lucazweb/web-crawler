@@ -13,7 +13,7 @@ export const ListItem = styled.li`
   padding: 18px;
   cursor: pointer;
   &:hover {
-    background: #f3f3f3;
+    background: #fffae4;
   }
 
   h3 {
@@ -109,4 +109,22 @@ export const DotLabel = styled.div`
   align-items: center;
   color: ${(props: DotProps) =>
     props.status === 'done' ? '#23b290' : 'rgba(255, 121, 63, 1)'};
+`
+
+export const PlaceholderBox = styled.div`
+  display: flex;
+  width: 30%;
+  gap: 12px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+`
+export const PlaceholderContent = styled.div`
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #666;
 `

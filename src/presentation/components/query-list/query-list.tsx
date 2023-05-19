@@ -8,10 +8,12 @@ import {
   ListItem,
   StyledList,
 } from './styled'
+import { Placeholder } from './placeholder'
 
 export type QueryListProps = {
   list: Array<Partial<QueryDetail>>
   onItemClick?: (id?: string) => void
+  onEmptyListClick?: () => void
 }
 
 export enum QueryStatus {
@@ -36,13 +38,18 @@ export const handleResultCounter = (
   return null
 }
 
-export const QueryList = (props: QueryListProps) => {
+export const QueryList = ({
+  list,
+  onItemClick,
+  onEmptyListClick,
+}: QueryListProps) => {
   return (
     <StyledList data-testid="query-list-component">
-      {props.list.map((query) => (
+      <Placeholder isVisible={list.length === 0} onClick={onEmptyListClick} />
+      {list.map((query) => (
         <ListItem
           onClick={() => {
-            props?.onItemClick(query.id)
+            onItemClick(query.id)
           }}
           key={query.id}
           data-testid="list-item"

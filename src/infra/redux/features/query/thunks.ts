@@ -44,16 +44,20 @@ export const fetchQueryStatus = createAsyncThunk<Partial<QueryDetail>, string>(
 export const fetchQueryList = createAsyncThunk<
   Array<Partial<QueryDetail>>,
   Array<Partial<QueryDetail>>
->('query/fetchQueryList', async (list: Array<Partial<QueryDetail>>) => {
-  try {
-    if (list.length > 0) {
-      const data = await remoteUpdateQueryList(list)
-      if (data) return handleListUpdate(list, data)
+>(
+  'query/fetchQueryList',
+  async (list: Array<Partial<QueryDetail>>, { dispatch }) => {
+    try {
+      dispatch(setIsLoading(true))
+      if (list.length > 0) {
+        const data = await remoteUpdateQueryList(list)
+        if (data) return handleListUpdate(list, data)
+      }
+      return list
+    } catch (err) {
+      console.log(err)
     }
-    return list
-  } catch (err) {
-    console.log(err)
   }
-})
+)
 
 export const selectQueryList = (state: QueryState) => state.list

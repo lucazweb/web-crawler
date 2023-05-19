@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
       font-family: 'Ubuntu', sans-serif;
       box-sizing: border-box;
       font-size: 16px;
+      background: #fffdf4;
     }
         
     *, *:before, *:after {
