@@ -13,7 +13,7 @@ export const ListItem = styled.li`
   padding: 18px;
   cursor: pointer;
   &:hover {
-    background: #f3f3f3;
+    background: #fffae4;
   }
 
   h3 {

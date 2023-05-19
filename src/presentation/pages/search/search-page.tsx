@@ -3,9 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/infra/redux'
 import { keyworkSearchRequest } from '@/infra/redux/features/query/thunks'
-import { Button, Layout, TopBar, SearchInput } from '@/presentation/components'
+import { Button, Layout, Logo, SearchInput } from '@/presentation/components'
 import { useAppDispatch } from '@/presentation/hooks'
 import { SearchBox } from './styled'
+import { FaSearch } from 'react-icons/fa'
+import { MdOutlineHistory } from 'react-icons/md'
+import { TopBar } from '@/presentation/components/top-bar/top-bar'
 
 export const SearchPage = () => {
   const [keyword, setKeyword] = useState('')
@@ -23,14 +26,13 @@ export const SearchPage = () => {
   return (
     <>
       <TopBar>
-        <div>
-          <span data-testid="history-link">
-            <Link to="/historico">Histórico de buscas</Link>
-          </span>
-        </div>
+        <span data-testid="history-link">
+          <MdOutlineHistory />
+          <Link to="/historico">Histórico de buscas</Link>
+        </span>
       </TopBar>
       <Layout>
-        <h1 data-testid="page-title">Webcrawler</h1>
+        <Logo isLarge />
         <SearchBox>
           <SearchInput
             onChange={(e) => {
@@ -41,6 +43,8 @@ export const SearchPage = () => {
           />
           <Button
             disabled={!keyword}
+            isLargeButton
+            icon={<FaSearch />}
             onClick={handleKeywordSearch}
             data-testid="search-button"
             label="Buscar"

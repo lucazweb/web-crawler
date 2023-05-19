@@ -5,7 +5,6 @@ import {
   Button,
   ButtonWrapper,
   Layout,
-  TopBar,
   QueryList,
 } from '@/presentation/components'
 import { QueryDetail } from '@/domain'
@@ -16,6 +15,9 @@ import { ListHeader } from './styled'
 import { fetchQueryList } from '@/infra/redux/features/query/thunks'
 import { useAppDispatch } from '@/presentation/hooks'
 import { RootState } from '@/infra/redux'
+import { TopBar } from '@/presentation/components/top-bar/top-bar'
+
+import { FaSearch } from 'react-icons/fa'
 
 const orderByStatus = (list: Array<Partial<QueryDetail>>) =>
   list.sort(function (a, b) {
@@ -64,11 +66,10 @@ export const QueryHistory = () => {
   return (
     <>
       <TopBar>
-        <div>
-          <span data-testid="search-page-link">
-            <Link to="/"> Nova busca</Link>
-          </span>
-        </div>
+        <span data-testid="search-page-link">
+          <FaSearch />
+          <Link to="/"> Nova busca</Link>
+        </span>
       </TopBar>
 
       <Layout>

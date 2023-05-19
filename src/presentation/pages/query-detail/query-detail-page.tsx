@@ -6,7 +6,7 @@ import {
   Button,
   ButtonWrapper,
   Layout,
-  TopBar,
+  StyledBar,
   QueryStatusDot,
   handleResultCounter,
 } from '@/presentation/components'
@@ -34,13 +34,13 @@ export const QuerySearchDetail = () => {
 
   return (
     <>
-      <TopBar>
+      <StyledBar>
         <div>
           <span data-testid="history-page-link">
             <Link to="/historico">Histórico de buscas</Link>
           </span>
         </div>
-      </TopBar>
+      </StyledBar>
 
       <Layout>
         <ButtonWrapper>

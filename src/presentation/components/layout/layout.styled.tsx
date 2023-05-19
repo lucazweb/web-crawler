@@ -17,21 +17,27 @@ export const ButtonWrapper = styled.div`
   justify-content: flex-start;
 `
 
-export const TopBar = styled.div`
+export const StyledBar = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
   box-sizing: border-box;
   padding: 12px;
+  background: ${(props) => props.theme.colors.border};
   div {
     display: flex;
     justify-content: flex-end;
     width: 80%;
     margin: auto;
     span {
+      display: flex;
+      gap: 4px;
+      align-items: center;
       cursor: pointer;
-      &:hover {
-        text-decoration: underline;
+      a,
+      svg {
+        color: white;
+        text-decoration: none;
       }
     }
   }
