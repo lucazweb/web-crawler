@@ -110,3 +110,21 @@ export const DotLabel = styled.div`
   color: ${(props: DotProps) =>
     props.status === 'done' ? '#23b290' : 'rgba(255, 121, 63, 1)'};
 `
+
+export const PlaceholderBox = styled.div`
+  display: flex;
+  width: 30%;
+  gap: 12px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+`
+export const PlaceholderContent = styled.div`
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+`

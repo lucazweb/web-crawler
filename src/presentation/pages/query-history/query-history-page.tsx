@@ -1,23 +1,21 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { TbRefresh, TbArrowBack } from 'react-icons/tb'
+import { FaSearch } from 'react-icons/fa'
+import { QueryDetail } from '@/domain'
+import { RootState, fetchQueryList } from '@/infra'
 import {
   Button,
   ButtonWrapper,
   Layout,
   QueryList,
+  TopBar,
 } from '@/presentation/components'
-import { QueryDetail } from '@/domain'
-import { TbRefresh, TbArrowBack } from 'react-icons/tb'
+import { useAppDispatch } from '@/presentation/hooks'
 import { getLocalQueryList } from '@/main/factories'
 
 import { ListHeader } from './styled'
-import { fetchQueryList } from '@/infra/redux/features/query/thunks'
-import { useAppDispatch } from '@/presentation/hooks'
-import { RootState } from '@/infra/redux'
-import { TopBar } from '@/presentation/components/top-bar/top-bar'
-
-import { FaSearch } from 'react-icons/fa'
 
 const orderByStatus = (list: Array<Partial<QueryDetail>>) =>
   list.sort(function (a, b) {
@@ -39,7 +37,6 @@ export const handleListUpdate = (
       return query
     }
   })
-
   return orderByStatus(result)
 }
 
@@ -47,7 +44,9 @@ export const QueryHistory = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const { list } = useSelector(({ querySlice }: RootState) => querySlice)
+  const { list, isLoading } = useSelector(
+    ({ querySlice }: RootState) => querySlice
+  )
 
   const handleListUpdate = async (localList: Array<Partial<QueryDetail>>) =>
     await dispatch(fetchQueryList(localList))
@@ -61,6 +60,10 @@ export const QueryHistory = () => {
 
   const handleItemClick = (id?: string) => {
     navigate(`/query-detail/${id}`)
+  }
+
+  const handleEmptyListClick = () => {
+    navigate('/')
   }
 
   return (
@@ -86,17 +89,24 @@ export const QueryHistory = () => {
           <h1 data-testid="page-title">
             Webcrawler <small>Histórico de buscas</small>
           </h1>
-          <Button
-            label="Atualizar"
-            icon={<TbRefresh />}
-            data-testid="refresh-button"
-            onClick={async () => {
-              await handleListUpdate(list)
-            }}
-          />
+          {list.length > 0 && (
+            <Button
+              isLoading={isLoading}
+              label="Atualizar"
+              icon={<TbRefresh />}
+              data-testid="refresh-button"
+              onClick={async () => {
+                await handleListUpdate(list)
+              }}
+            />
+          )}
         </ListHeader>
         <div style={{ width: '100%', display: 'flex' }}>
-          <QueryList list={list} onItemClick={handleItemClick} />
+          <QueryList
+            list={list}
+            onItemClick={handleItemClick}
+            onEmptyListClick={handleEmptyListClick}
+          />
         </div>
       </Layout>
     </>
