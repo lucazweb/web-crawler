@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --config=webpack.config.dev.js --open",
     "build": "webpack --config=webpack.config.prod.js",
-    "test:watch": "jest --watch --no-cache"
+    "test": "jest --no-cache",
+    "test:watch": "jest --watch --no-cache",
+    "test:e2e": "cypress open"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -19,10 +21,12 @@
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
+    "cypress": "^12.12.0",
     "dotenv-webpack": "^8.0.1",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
     "eslint-config-standard-with-typescript": "^34.0.0",
+    "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-node": "^11.1.0",

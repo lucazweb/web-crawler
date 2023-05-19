@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "types": ["cypress"],
+    "esModuleInterop": true
+  },
+  // allow ide-intelisense for cypress types
+  "include": ["../../../../node_modules/cypress", "./*/*.ts"]
+}
