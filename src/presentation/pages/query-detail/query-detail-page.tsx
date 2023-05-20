@@ -6,14 +6,15 @@ import {
   Button,
   ButtonWrapper,
   Layout,
-  StyledBar,
   QueryStatusDot,
   handleResultCounter,
+  TopBar,
 } from '@/presentation/components'
 import { DetailBody, DetailBox, DetailCard, DetailHeader } from './styled'
 import { RootState } from '@/infra/redux'
 import { useAppDispatch } from '@/presentation/hooks'
 import { fetchQueryStatus } from '@/infra/redux/features/query/thunks'
+import { MdOutlineHistory } from 'react-icons/md'
 
 export const QuerySearchDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -34,17 +35,17 @@ export const QuerySearchDetail = () => {
 
   return (
     <>
-      <StyledBar>
-        <div>
-          <span data-testid="history-page-link">
-            <Link to="/historico">Histórico de buscas</Link>
-          </span>
-        </div>
-      </StyledBar>
+      <TopBar>
+        <span data-testid="history-link">
+          <MdOutlineHistory />
+          <Link to="/historico">Histórico de buscas</Link>
+        </span>
+      </TopBar>
 
       <Layout>
         <ButtonWrapper>
           <Button
+            data-testid="back-button"
             label="Voltar"
             onClick={() => {
               navigate('/historico')
@@ -63,14 +64,14 @@ export const QuerySearchDetail = () => {
             </DetailHeader>
 
             <DetailBody>
-              <span data-testid="list-item-id">
+              <span>
                 <p data-testid="query-id"> ID: {query?.id} </p>
                 <p data-testid="results-count">
                   {handleResultCounter(query?.status, query?.urls)}
                 </p>
               </span>
 
-              <ul style={{ marginTop: '24px' }}>
+              <ul data-testid="urls-list" style={{ marginTop: '24px' }}>
                 {query?.urls.map((url: string) => (
                   <li key={url}>{url}</li>
                 ))}
