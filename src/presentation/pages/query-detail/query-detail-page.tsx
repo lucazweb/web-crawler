@@ -65,7 +65,9 @@ export const QuerySearchDetail = () => {
 
             <DetailBody>
               <span>
-                <p data-testid="query-id"> ID: {query?.id} </p>
+                <p data-testid="query-id">
+                  <strong>ID:</strong> {query?.id}
+                </p>
                 <p data-testid="results-count">
                   {handleResultCounter(query?.status, query?.urls)}
                 </p>

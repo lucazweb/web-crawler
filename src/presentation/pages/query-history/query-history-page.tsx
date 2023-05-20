@@ -16,7 +16,8 @@ import {
 import { useAppDispatch } from '@/presentation/hooks'
 import { getLocalQueryList } from '@/main/factories'
 
-import { ListHeader } from './styled'
+import { ListHeader, StyledSpan } from './styled'
+import { MdOutlineHistory } from 'react-icons/md'
 
 const orderByStatus = (list: Array<Partial<QueryDetail>>) =>
   list.sort(function (a, b) {
@@ -88,11 +89,17 @@ export const QueryHistory = () => {
           />
         </ButtonWrapper>
         <ListHeader>
-          <Logo subTitle="Histórico de buscas" />
+          <Logo
+            subTitle={
+              <StyledSpan>
+                <MdOutlineHistory /> Histórico de buscas
+              </StyledSpan>
+            }
+          />
 
           {list.length > 0 && (
             <Button
-              isLoading={isLoading}
+              isLoading={isLoading && list.length > 0}
               label="Atualizar"
               icon={<TbRefresh />}
               data-testid="refresh-button"
@@ -104,6 +111,7 @@ export const QueryHistory = () => {
         </ListHeader>
         <div style={{ width: '100%', display: 'flex' }}>
           <QueryList
+            isLoading={isLoading}
             list={list}
             onItemClick={handleItemClick}
             onEmptyListClick={handleEmptyListClick}

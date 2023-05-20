@@ -1,4 +1,5 @@
 import { Status } from '@/domain'
+import { fadeInEffect } from '@/presentation/styles/utils'
 import styled, { keyframes } from 'styled-components'
 
 export const StyledList = styled.ul`
@@ -6,6 +7,7 @@ export const StyledList = styled.ul`
 `
 
 export const ListItem = styled.li`
+  animation: ${fadeInEffect} 0.3s ease-in forwards;
   width: 100%;
   border-bottom: 1px solid #ccc;
   padding-bottom: 12px;
@@ -119,6 +121,7 @@ export const PlaceholderBox = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto;
+  padding-top: 150px;
 `
 export const PlaceholderContent = styled.div`
   width: 180px;
@@ -126,5 +129,17 @@ export const PlaceholderContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #666;
+  color: #929292;
+`
+
+export const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  animation: ${fadeInEffect} 0.3s ease-in forwards;
+  padding-top: 200px;
+  span {
+    width: 50px;
+    height: 50px;
+    opacity: 0.4;
+  }
 `
