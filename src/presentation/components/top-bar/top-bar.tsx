@@ -3,7 +3,7 @@ import { StyledBar } from '@/presentation/components'
 
 export const TopBar = ({ children }: PropsWithChildren) => {
   return (
-    <StyledBar>
+    <StyledBar data-testid="topbar">
       <div>{children}</div>
     </StyledBar>
   )
