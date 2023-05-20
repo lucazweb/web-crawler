@@ -12,13 +12,17 @@ export const Placeholder = ({ isVisible, onClick }: Props) => {
   return (
     <>
       {isVisible && (
-        <PlaceholderBox>
+        <PlaceholderBox data-testid="query-list-placeholder">
           <PlaceholderContent>
             <VscInbox size={90} />
-            <p>Sem pesquisas recentes</p>
+            <p>Sem buscas recentes</p>
           </PlaceholderContent>
           {onClick && (
-            <Button onClick={onClick} label="Realizar nova pesquisa" />
+            <Button
+              data-testid="redirect-search-button"
+              onClick={onClick}
+              label="Realizar nova busca"
+            />
           )}
         </PlaceholderBox>
       )}

@@ -5,8 +5,8 @@ export const ListHeader = styled.div`
   justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 12px;
-  margin-bottom: 32px;
+
+  margin-bottom: 16px;
 
   h1 {
     display: flex;

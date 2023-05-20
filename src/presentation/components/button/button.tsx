@@ -13,7 +13,7 @@ export const Button = ({ icon, ...props }: ButtonProps) => {
   return (
     <StyledButton {...props}>
       {!props.isLoading && icon && icon}
-      {!props.isLoading ? props.label : <DotBlue />}
+      {!props.isLoading ? props.label : <DotBlue data-testid="button-loader" />}
     </StyledButton>
   )
 }

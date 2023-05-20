@@ -3,8 +3,11 @@ import { StyledTitle } from './styled'
 
 export type LogoProps = {
   isLarge?: boolean
+  subTitle?: string
 }
 
 export const Logo = (props: LogoProps) => (
-  <StyledTitle isLarge={props.isLarge}>WebCrawler</StyledTitle>
+  <StyledTitle data-testid="app-logo" isLarge={props.isLarge}>
+    WebCrawler{props.subTitle && <small> {props.subTitle}</small>}
+  </StyledTitle>
 )

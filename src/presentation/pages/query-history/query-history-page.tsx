@@ -9,6 +9,7 @@ import {
   Button,
   ButtonWrapper,
   Layout,
+  Logo,
   QueryList,
   TopBar,
 } from '@/presentation/components'
@@ -71,7 +72,7 @@ export const QueryHistory = () => {
       <TopBar>
         <span data-testid="search-page-link">
           <FaSearch />
-          <Link to="/"> Nova busca</Link>
+          <Link to="/">Nova busca</Link>
         </span>
       </TopBar>
 
@@ -83,12 +84,12 @@ export const QueryHistory = () => {
               navigate('/')
             }}
             icon={<TbArrowBack />}
+            data-testid="back-button"
           />
         </ButtonWrapper>
         <ListHeader>
-          <h1 data-testid="page-title">
-            Webcrawler <small>Histórico de buscas</small>
-          </h1>
+          <Logo subTitle="Histórico de buscas" />
+
           {list.length > 0 && (
             <Button
               isLoading={isLoading}
