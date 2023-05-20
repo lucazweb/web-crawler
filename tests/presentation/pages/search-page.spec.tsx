@@ -1,18 +1,10 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { render } from '@/tests/utils'
 import { SearchPage } from '@/presentation/pages'
 import '@testing-library/jest-dom/extend-expect'
-import { ReduxProvider } from '@/infra/redux'
 
 const makeSut = () => {
-  return render(
-    <ReduxProvider>
-      <BrowserRouter>
-        <SearchPage />
-      </BrowserRouter>
-    </ReduxProvider>
-  )
+  return render(<SearchPage />)
 }
 
 describe('SearchPage tests', () => {
@@ -20,7 +12,7 @@ describe('SearchPage tests', () => {
     const { getByTestId } = makeSut()
     const searchInput = getByTestId('search-input-component')
 
-    expect(getByTestId('page-title')).toBeTruthy()
+    expect(getByTestId('app-logo')).toBeTruthy()
     expect(searchInput).toBeTruthy()
     expect(searchInput).toHaveAttribute('placeholder', 'Digite a palavra-chave')
     expect(getByTestId('search-button')).toBeTruthy()
