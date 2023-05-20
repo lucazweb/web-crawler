@@ -6,14 +6,17 @@ import {
   ListBody,
   ListHeader,
   ListItem,
+  LoaderWrapper,
   StyledList,
 } from './styled'
 import { Placeholder } from './placeholder'
+import { DotBlue } from '../dot-loader/styled'
 
 export type QueryListProps = {
   list: Array<Partial<QueryDetail>>
   onItemClick?: (id?: string) => void
   onEmptyListClick?: () => void
+  isLoading?: boolean
 }
 
 export enum QueryStatus {
@@ -42,35 +45,46 @@ export const QueryList = ({
   list,
   onItemClick,
   onEmptyListClick,
+  isLoading,
 }: QueryListProps) => {
   return (
     <StyledList data-testid="query-list-component">
-      <Placeholder isVisible={list.length === 0} onClick={onEmptyListClick} />
-      {list.map((query) => (
-        <ListItem
-          onClick={() => {
-            onItemClick(query.id)
-          }}
-          key={query.id}
-          data-testid="list-item"
-        >
-          <ListHeader>
-            <h3 data-testid="list-item-keyword">{query?.keyword} </h3>
-            <DotLabel status={query?.status} data-testid="list-item-status">
-              <Dot status={query?.status} /> {QueryStatus[query?.status]}
-            </DotLabel>
-          </ListHeader>
-          <ListBody>
-            <span data-testid="list-item-id">ID: {query.id}</span>
+      {isLoading && (
+        <LoaderWrapper>
+          <DotBlue />
+        </LoaderWrapper>
+      )}
+      <Placeholder
+        isVisible={!isLoading && list.length === 0}
+        onClick={onEmptyListClick}
+      />
+      {!isLoading &&
+        list.length > 0 &&
+        list.map((query) => (
+          <ListItem
+            onClick={() => {
+              onItemClick(query.id)
+            }}
+            key={query.id}
+            data-testid="list-item"
+          >
+            <ListHeader>
+              <h3 data-testid="list-item-keyword">{query?.keyword} </h3>
+              <DotLabel status={query?.status} data-testid="list-item-status">
+                <Dot status={query?.status} /> {QueryStatus[query?.status]}
+              </DotLabel>
+            </ListHeader>
+            <ListBody>
+              <span data-testid="list-item-id">ID: {query.id}</span>
 
-            {!!query.status && (
-              <span data-testid="list-item-result-counter">
-                {handleResultCounter(query.status, query.urls)}
-              </span>
-            )}
-          </ListBody>
-        </ListItem>
-      ))}
+              {!!query.status && (
+                <span data-testid="list-item-result-counter">
+                  {handleResultCounter(query.status, query.urls)}
+                </span>
+              )}
+            </ListBody>
+          </ListItem>
+        ))}
     </StyledList>
   )
 }
