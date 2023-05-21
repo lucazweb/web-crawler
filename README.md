@@ -13,7 +13,7 @@ $ npm install
 #### Testes unitários
 
 Para os executar os testes unitários, executar:
-Executar `npm test` ou `npm test:watch`
+Executar `npm test` ou `npm run test:watch`
 
 #### Testes end-to-end com cypress
 
