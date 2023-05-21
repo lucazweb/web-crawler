@@ -18,3 +18,8 @@ export const ListHeader = styled.div`
     }
   }
 `
+export const StyledSpan = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`
