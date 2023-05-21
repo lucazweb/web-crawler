@@ -29,6 +29,11 @@ export const SearchPage = () => {
     await dispatch(keyworkSearchRequest(keyword))
   }
 
+  const handleSearchOnKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === 'Enter' || e.code === 'NumpadEnter')
+      void handleKeywordSearch()
+  }
+
   useEffect(() => {
     if (shouldRedirect) navigate(shouldRedirect)
     return () => {
@@ -54,6 +59,7 @@ export const SearchPage = () => {
               }}
               value={keyword}
               placeholder="Digite a palavra-chave"
+              onKeyDown={handleSearchOnKeydown}
             />
             <Button
               disabled={!keyword}
