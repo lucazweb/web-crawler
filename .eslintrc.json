@@ -1,0 +1,41 @@
+{
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "standard-with-typescript",
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:cypress/recommended"
+  ],
+  "plugins": ["react", "cypress"],
+  "env": {
+    "cypress/globals": true
+  },
+  "parserOptions": {
+    "project": "./tsconfig-eslint.json"
+  },
+  "rules": {
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/quotes": "off",
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "space-before-function-paren": "off",
+    "quotes": [2, "single"],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-varas": "off",
+    "comma-dangle": "off",
+    "react/no-unescaped-entities": "off",
+    "@typescript/comma-dangle": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/restrict-template-expressions": "off"
+  }
+}
