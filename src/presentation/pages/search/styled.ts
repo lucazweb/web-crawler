@@ -22,3 +22,8 @@ export const SearchBox = styled.div`
     }
   }
 `
+
+export const ErrorMessage = styled.span`
+  color: ${(props) => props.theme.colors.error};
+  margin-top: 12px;
+`

@@ -1,27 +1,40 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { QueryDetail } from '@/domain'
 import {
+  checkSavedSearch,
   getLocalQueryList,
   localSaveQuery,
   remoteKeyworkSearch,
   remoteLoadQueryStatus,
   remoteUpdateQueryList,
 } from '@/main/factories'
-import { QueryState, setIsLoading } from './slice'
+import {
+  QueryState,
+  setErrorMessage,
+  setIsLoading,
+  setShouldRedirect,
+} from './slice'
 import { handleListUpdate } from '@/presentation/pages'
 
 export const keyworkSearchRequest = createAsyncThunk<
   Partial<QueryDetail>,
   string
 >('query/keyworkSearchRequest', async (keyword: string, { dispatch }) => {
+  dispatch(setErrorMessage(''))
   dispatch(setIsLoading(true))
+
+  if (checkSavedSearch(keyword)) {
+    dispatch(setErrorMessage('Essa palavra-chave já foi pesquisada..'))
+    return
+  }
+
   const result = await remoteKeyworkSearch(keyword)
   if (result) {
-    console.log(result, process.env.LOCAL_STORAGE_KEY)
     localSaveQuery().set(process.env.LOCAL_STORAGE_KEY, {
       ...result,
       keyword,
     })
+    dispatch(setShouldRedirect('/historico'))
     return result
   }
 })
