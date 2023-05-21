@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { RootState, setShouldRedirect } from '@/infra/redux'
-import { keyworkSearchRequest } from '@/infra/redux/features/query/thunks'
-import { Button, Layout, Logo, SearchInput } from '@/presentation/components'
-import { useAppDispatch } from '@/presentation/hooks'
-import { SearchBox, ErrorMessage } from './styled'
 import { FaSearch } from 'react-icons/fa'
 import { MdOutlineHistory } from 'react-icons/md'
 import { RiErrorWarningFill } from 'react-icons/ri'
-import { TopBar } from '@/presentation/components/top-bar/top-bar'
+import { RootState, setShouldRedirect } from '@/infra/redux'
+import { keyworkSearchRequest } from '@/infra/redux/features/query/thunks'
+import {
+  Button,
+  Layout,
+  Logo,
+  SearchInput,
+  TopBar,
+} from '@/presentation/components'
+import { useAppDispatch } from '@/presentation/hooks'
+import { SearchBox, ErrorMessage } from './styled'
 
 export const SearchPage = () => {
   const [keyword, setKeyword] = useState('')
