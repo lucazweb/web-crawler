@@ -1,5 +1,5 @@
-import { fadeInEffect } from '@/presentation/styles/utils'
 import styled from 'styled-components'
+import { fadeInEffect } from '@/presentation/styles/utils'
 
 export const Layout = styled.div`
   display: flex;

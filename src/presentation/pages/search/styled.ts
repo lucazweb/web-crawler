@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { fadeInEffect } from '@/presentation/styles'
+import { fadeInEffect } from '@/presentation/styles/utils'
 
 export const SearchBox = styled.div`
   display: flex;
@@ -31,9 +31,9 @@ export const ErrorMessage = styled.span`
   display: flex;
   align-items: center;
   gap: 4px;
-  animation: ${fadeInEffect} 0.3s ease-in forwards;
   color: ${(props) => props.theme.colors.error};
   margin-top: 12px;
+  animation: ${fadeInEffect} 0.3s ease-in forwards;
 `
 export const SearchContentWrapper = styled.div`
   display: flex;
