@@ -1,27 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { RootState } from '@/infra/redux'
-import { keyworkSearchRequest } from '@/infra/redux/features/query/thunks'
-import { Button, Layout, Logo, SearchInput } from '@/presentation/components'
-import { useAppDispatch } from '@/presentation/hooks'
-import { SearchBox } from './styled'
 import { FaSearch } from 'react-icons/fa'
 import { MdOutlineHistory } from 'react-icons/md'
-import { TopBar } from '@/presentation/components/top-bar/top-bar'
+import { RiErrorWarningFill } from 'react-icons/ri'
+import { RootState, setShouldRedirect } from '@/infra/redux'
+import { keyworkSearchRequest } from '@/infra/redux/features/query/thunks'
+import {
+  Button,
+  Layout,
+  Logo,
+  SearchInput,
+  TopBar,
+} from '@/presentation/components'
+import { useAppDispatch } from '@/presentation/hooks'
+import { SearchBox, ErrorMessage } from './styled'
 
 export const SearchPage = () => {
   const [keyword, setKeyword] = useState('')
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const { isLoading } = useSelector(({ querySlice }: RootState) => querySlice)
+  const { isLoading, errorMessage, shouldRedirect } = useSelector(
+    ({ querySlice }: RootState) => querySlice
+  )
 
   const handleKeywordSearch = async () => {
-    await dispatch(keyworkSearchRequest(keyword)).then(() => {
-      navigate('/historico')
-    })
+    await dispatch(keyworkSearchRequest(keyword))
   }
+
+  useEffect(() => {
+    if (shouldRedirect) navigate(shouldRedirect)
+    return () => {
+      dispatch(setShouldRedirect(undefined))
+    }
+  }, [shouldRedirect])
 
   return (
     <>
@@ -51,6 +64,12 @@ export const SearchPage = () => {
             isLoading={isLoading}
           />
         </SearchBox>
+
+        {errorMessage && (
+          <ErrorMessage>
+            <RiErrorWarningFill /> {errorMessage}
+          </ErrorMessage>
+        )}
       </Layout>
     </>
   )
