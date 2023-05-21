@@ -14,7 +14,7 @@ import {
   TopBar,
 } from '@/presentation/components'
 import { useAppDispatch } from '@/presentation/hooks'
-import { SearchBox, ErrorMessage } from './styled'
+import { SearchBox, ErrorMessage, SearchContentWrapper } from './styled'
 
 export const SearchPage = () => {
   const [keyword, setKeyword] = useState('')
@@ -45,25 +45,27 @@ export const SearchPage = () => {
         </span>
       </TopBar>
       <Layout>
-        <Logo isLarge />
-        <SearchBox>
-          <SearchInput
-            onChange={(e) => {
-              setKeyword(e.target.value)
-            }}
-            value={keyword}
-            placeholder="Digite a palavra-chave"
-          />
-          <Button
-            disabled={!keyword}
-            isLarge
-            icon={<FaSearch />}
-            onClick={handleKeywordSearch}
-            data-testid="search-button"
-            label="Buscar"
-            isLoading={isLoading}
-          />
-        </SearchBox>
+        <SearchContentWrapper>
+          <Logo isLarge />
+          <SearchBox>
+            <SearchInput
+              onChange={(e) => {
+                setKeyword(e.target.value)
+              }}
+              value={keyword}
+              placeholder="Digite a palavra-chave"
+            />
+            <Button
+              disabled={!keyword}
+              isLarge
+              icon={<FaSearch />}
+              onClick={handleKeywordSearch}
+              data-testid="search-button"
+              label="Buscar"
+              isLoading={isLoading}
+            />
+          </SearchBox>
+        </SearchContentWrapper>
 
         {errorMessage && (
           <ErrorMessage>
