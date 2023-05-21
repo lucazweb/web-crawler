@@ -11,7 +11,7 @@ export const SearchBox = styled.div`
     border-radius: 0px 4px 4px 0px;
   }
   input {
-    width: 500px;
+    width: 30vw;
     border-radius: 4px 0px 0px 4px;
     border-color: ${(props) => props.theme.colors.border};
     border-right: none;
