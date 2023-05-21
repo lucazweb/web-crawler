@@ -8,7 +8,7 @@ export const theme = {
     buttonText: '#2196f3',
     hover: '#23b290',
     inactive: '#ccc;',
-    error: '#b55e4a',
+    error: '#c54a2d',
     dark: '#333',
     textHighlight: '#2196f3',
     textInactive: '#666',

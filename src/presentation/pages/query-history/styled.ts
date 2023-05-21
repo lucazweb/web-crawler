@@ -5,12 +5,12 @@ export const ListHeader = styled.div`
   justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid #ccc;
-
   margin-bottom: 16px;
 
   h1 {
     display: flex;
     align-items: center;
+    margin-bottom: 18px;
     small {
       padding-top: 6px;
       font-size: 0.5em;

@@ -1,14 +1,18 @@
 import styled from 'styled-components'
+import { fadeInEffect } from '@/presentation/styles'
 
 export const SearchBox = styled.div`
   display: flex;
   justify-content: center;
-  width: 50%;
+  width: content-fit;
+  border-radius: 4px;
+  box-shadow: 1px 0px 4px #ccc;
   button {
     border-radius: 0px 4px 4px 0px;
   }
   input {
-    border-radius: 4px 0px 4px 4px;
+    width: 500px;
+    border-radius: 4px 0px 0px 4px;
     border-color: ${(props) => props.theme.colors.border};
     border-right: none;
     color: ${(props) => props.theme.colors.border};
@@ -24,6 +28,19 @@ export const SearchBox = styled.div`
 `
 
 export const ErrorMessage = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  animation: ${fadeInEffect} 0.3s ease-in forwards;
   color: ${(props) => props.theme.colors.error};
   margin-top: 12px;
+`
+export const SearchContentWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20vh;
+  h1 {
+    text-align: center;
+  }
 `
