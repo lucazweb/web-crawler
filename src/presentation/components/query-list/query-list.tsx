@@ -55,11 +55,11 @@ export const QueryList = ({
         </LoaderWrapper>
       )}
       <Placeholder
-        isVisible={!isLoading && list.length === 0}
+        isVisible={!isLoading && list?.length === 0}
         onClick={onEmptyListClick}
       />
       {!isLoading &&
-        list.length > 0 &&
+        list?.length > 0 &&
         list.map((query) => (
           <ListItem
             onClick={() => {
