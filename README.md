@@ -18,7 +18,7 @@ Executar `npm test` ou `npm run test:watch`
 #### Testes end-to-end com cypress
 
 Para os executar os testes end-to-end com o cypress, basta executar:
-Executar `yarn test:e2e` ou `npm run test:e2e`
+Executar `npm run test:e2e`
 
 #### Gerando um Build para produção
 
